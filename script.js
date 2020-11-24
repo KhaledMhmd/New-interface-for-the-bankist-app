@@ -1,5 +1,12 @@
 "use strict";
 const allSections = document.querySelectorAll(".section");
+const navLogInButton = document.querySelector(".navLogInButton");
+const openAccButton = document.querySelectorAll(".openAccButton");
+const modals = document.querySelectorAll(".modal");
+const logInModal = document.querySelector(".logInModal");
+const signUpModal = document.querySelector(".signUpModal");
+const closeModalButton = document.querySelectorAll(".closeModalButton");
+const overlay = document.querySelector(".overlay");
 const headerSection = document.querySelector(".header");
 const nav = document.querySelector(".nav");
 const navLinks = document.querySelector(".navLinks");
@@ -15,6 +22,44 @@ const sliderButtonRight = document.querySelector(".sliderButtonRight");
 const dots = document.querySelector(".dots");
 
 // ------------------------------------------------------------------------------------------------------------------ //
+
+// adding functions to the login and open account buttons
+
+// CLOSING ANY MODAL
+
+const closeModal = function () {
+  overlay.classList.add("hidden");
+  modals.forEach(function (modal) {
+    if (!modal.classList.contains("hidden")) {
+      modal.classList.add("hidden");
+    }
+  });
+};
+for (let i = 0; i < closeModalButton.length; i++) {
+  closeModalButton[i].addEventListener("click", closeModal);
+}
+overlay.addEventListener("click", closeModal);
+
+// LOGIN MODAL
+
+const showLogInModal = function () {
+  logInModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+navLogInButton.addEventListener("click", showLogInModal);
+
+// SIGN UP MODAL
+
+const showSignUpModal = function () {
+  signUpModal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+for (let i = 0; i < openAccButton.length; i++) {
+  openAccButton[i].addEventListener("click", showSignUpModal);
+}
+
+// -------------------------------------------------------------------------------------------- //
 
 // adding smooth scrolling when pushing the 'Learn More' button and the navLinks
 learnMoreButton.addEventListener("click", function (e) {
